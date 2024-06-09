@@ -17,7 +17,7 @@ ruta.get('/:id', (req, res) => {
     try {
         egresosController.getOneBy(req.params.id)
             .then((egresos) => {
-                res.json({ message: 'success', codeStatus: 200, data: egresos });
+                res.render('egresos', {  egresos });
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });

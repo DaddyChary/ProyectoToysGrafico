@@ -17,7 +17,7 @@ ruta.get('/:id', (req, res) => {
     try {
         inventarioController.getOneBy(req.params.id)
             .then((inventario) => {
-                res.json({ message: 'success', codeStatus: 200, data: inventario });
+                res.render('inventario', {  inventario });
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
