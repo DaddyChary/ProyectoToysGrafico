@@ -1,57 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <%- include('partials/head.ejs')%>
-
+    <head>
+        <%- include('partials/head.ejs')%>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+    </head>
     <body>
-        <%- include ('partials/navbar.ejs')%>
+        <%- include('partials/navbar.ejs')%>
+
         <div class="container mt-5">
             <div class="row">
-                <div class="col-12 col-md-6">
-                    <form>
-                        <h2>Crear Marcas</h2>
-                        <div class="mb-3">
-                            <label for="nombre"
-                                class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre"
-                                aria-describedby="nombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="origen"
-                                class="form-label">Origen</label>
-                            <input type="text" class="form-control"
-                                id="origen">
-                        </div>
-                        <button type="submit"
-                            class="btn btn-primary">Agregar</button>
-                    </form>
-                </div>
-                <div class="col-12 col-md-6">
-                    <form>
-                        <h2>Editar Marcas</h2>
-                        <div class="mb-3">
-                            <label for="id"
-                                class="form-label">ID</label>
-                            <input type="text" class="form-control" id="id"
-                                aria-describedby="id">  
-                        </div>
-                        <div class="mb-3">
-                            <label for="nombre"
-                                class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre"
-                                aria-describedby="nombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="origen"
-                                class="form-label">Origen</label>
-                            <input type="text" class="form-control"
-                                id="origen">
-                        </div>
-                        <button type="submit"
-                            class="btn btn-primary">Actualizar</button>
-                    </form>
-                </div>
-                <div class="mt-5">
+                <div class="col-12">
+                    <h2>Marcas</h2>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="search"
+                            placeholder="Buscar...">
+                    </div>
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -62,34 +27,129 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% marcas.forEach(item=> { %>
+                            <% marcas.forEach(item => { %>
                             <tr>
+                                <td><%= item.id %></td>
+                                <td><%= item.nombre %></td>
+                                <td><%= item.origen %></td>
                                 <td>
-                                    <%= item.id%>
-                                </td>
-                                <td>
-                                    <%= item.nombre %>
-                                </td>
-                                <td>
-                                    <%= item.origen %>
-                                </td>
-                                <td>
+                                    <button type="button"
+                                        class="btn btn-warning btn-sm"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#editModal<%= item.id %>">Editar</button>
                                     <form method="POST"
-                                        action="/eliminar/<%= item.id %>">
+                                        action="/eliminar/<%= item.id %>"
+                                        class="d-inline">
                                         <button type="submit"
-                                            class="btn btn-danger">Eliminar</button>
+                                            class="btn btn-danger btn-sm">Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
+
+                            <!-- Modal para Editar Marca -->
+                            <div class="modal fade" id="editModal<%= item.id %>"
+                                tabindex="-1"
+                                aria-labelledby="editModalLabel<%= item.id %>"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"
+                                                id="editModalLabel<%= item.id %>">Editar
+                                                Marca</h5>
+                                            <button type="button"
+                                                class="btn-close"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="POST"
+                                                action="/editar/<%= item.id %>">
+                                                <div class="mb-3">
+                                                    <label
+                                                        for="id_edit_<%= item.id %>"
+                                                        class="form-label">ID</label>
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="id_edit_<%= item.id %>"
+                                                        name="id"
+                                                        value="<%= item.id %>">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label
+                                                        for="nombre_edit_<%= item.id %>"
+                                                        class="form-label">Nombre</label>
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="nombre_edit_<%= item.id %>"
+                                                        name="nombre"
+                                                        value="<%= item.nombre %>">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label
+                                                        for="origen_edit_<%= item.id %>"
+                                                        class="form-label">Origen</label>
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="origen_edit_<%= item.id %>"
+                                                        name="origen"
+                                                        value="<%= item.origen %>">
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-primary">Guardar
+                                                    Cambios</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <% }) %>
                         </tbody>
                     </table>
+                    <!-- Botón para agregar nueva Marca -->
+                    <button type="button" class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addModal">Agregar Marca</button>
                 </div>
             </div>
         </div>
+
+        <!-- Modal para Agregar Marca -->
+        <div class="modal fade" id="addModal" tabindex="-1"
+            aria-labelledby="addModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">Agregar
+                            Marca</h5>
+                        <button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="nombre_add"
+                                    class="form-label">Nombre</label>
+                                <input type="text" class="form-control"
+                                    id="nombre_add" name="nombre"
+                                    placeholder="Ingrese el nombre de la marca">
+                            </div>
+                            <div class="mb-3">
+                                <label for="origen_add"
+                                    class="form-label">Origen</label>
+                                <input type="text" class="form-control"
+                                    id="origen_add" name="origen"
+                                    placeholder="Ingrese el origen de la marca">
+                            </div>
+                            <button type="submit"
+                                class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/footer.ejs')%>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-    <%- include ('partials/footer.ejs')%>
-
 </html>
