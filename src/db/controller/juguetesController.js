@@ -10,6 +10,26 @@ function getAll() {
     });
 }
 
+function getAllFilter() {
+    return new Promise((resolve, reject) => {
+        conn.query(`SELECT 
+                    proveedores.nombre AS nombre_proveedor,
+                    categorias.nombre AS nombre_categoria,
+                    marcas.nombre AS nombre_marca,
+                    juguetes.*
+                    FROM 
+                        juguetes
+                    JOIN 
+                        proveedores ON juguetes.id_proveedor_fk = proveedores.id
+                    JOIN 
+                        categorias ON juguetes.id_categoria_fk = categorias.id
+                    JOIN 
+                        marcas ON juguetes.id_marca_fk = marcas.id;`, (error, result) => {
+            return error ? reject(error) : resolve(result);
+        })
+    });
+}
+
 function getOneBy(id) {
     return new Promise((resolve, reject) => {
         const query = `SELECT * FROM ${TABLA} WHERE id =${id}`
@@ -40,10 +60,10 @@ function update(data) {
 function deleteBy(id) {
     return new Promise((resolve, reject) => {
         conn.query(`DELETE FROM ${TABLA} WHERE id =?`, id, (error, result) => {
-            return error? reject(error) : resolve(result);
+            return error ? reject(error) : resolve(result);
         })
     });
 }
 
-module.exports = { getAll, getOneBy, insert, deleteBy, update };
+module.exports = { getAll, getOneBy, insert, deleteBy, update, getAllFilter };
 

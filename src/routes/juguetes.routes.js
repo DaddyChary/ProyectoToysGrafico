@@ -2,9 +2,20 @@ const { Router } = require('express');
 const juguetesController = require('../db/controller/juguetesController.js');
 const ruta = Router();
 
+// ruta.get('/', (req, res) => {
+//     try {
+//         juguetesController.getAll()
+//             .then((juguetes) => {
+//                 res.render('juguetes', {  juguetes });
+//             })
+//     } catch (error) {
+//         res.json({ message: 'error', codeStatus: 500, data: error });
+//     }
+// });
+
 ruta.get('/', (req, res) => {
     try {
-        juguetesController.getAll()
+        juguetesController.getAllFilter()
             .then((juguetes) => {
                 res.render('juguetes', {  juguetes });
             })

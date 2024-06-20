@@ -1,66 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <%- include ('partials/head.ejs')%>
     <body>
         <%- include ('partials/navbar.ejs')%>
-        <h2 class="footer-container container text-center mt-5">About</h2>
-        <div
-            class="box footer-container container text-center mt-5 border border-dark">
-            <p>Este proyecto representa una página web sofisticada y bien
-                estructurada, que utiliza HTML, un lenguaje de marcado estándar
-                para la creación de contenido y la estructura de las páginas
-                web. Además, se ha incorporado EJS, un motor de plantillas para
-                JavaScript, que permite la creación de vistas dinámicas y
-                reutilizables en la estructura de la página.
-            </p>
-            <p>
-                La estructura básica de la página se compone de tres elementos
-                principales: la cabecera, la barra de navegación y el pie de
-                página. Estos elementos se encuentran encapsulados en fragmentos
-                de código EJS, lo que permite una mejor organización y
-                reutilización del código. La cabecera incluye metadatos y
-                referencias a hojas de estilo, mientras que la barra de
-                navegación proporciona una interfaz de navegación intuitiva para
-                los usuarios.
-            </p>    
-            <p>
-                El cuerpo de la página es el área central de la página web y
-                contiene el contenido principal. En este caso, se ha incluido un
-                cuadro con un mensaje personalizado, que utiliza clases de
-                Bootstrap para el diseño y el estilo. Bootstrap es una
-                biblioteca de código abierto que proporciona componentes de
-                interfaz de usuario reutilizables y diseños responsivos, lo que
-                facilita el desarrollo front-end y la creación de páginas web
-                atractivas y adaptables a diferentes dispositivos.
-            </p>
-            <p>
-                El pie de página, también encapsulado en un fragmento de código
-                EJS, contiene información de copyright y enlaces a redes
-                sociales. Este elemento también utiliza clases de Bootstrap para
-                el diseño y el estilo.
-            </p>
-            <p>
-                Para completar la página web, se ha incluido un script de
-                JavaScript que carga la biblioteca de Bootstrap. Bootstrap
-                utiliza JavaScript para proporcionar funcionalidades
-                adicionales, como la navegación desplegable y el colapso de
-                elementos, además de facilitar el desarrollo front-end.
-            </p>
-            <p>
-                En resumen, este proyecto es una página web sofisticada y bien
-                estructurada que utiliza HTML, EJS y Bootstrap para crear una
-                interfaz de usuario atractiva y adaptable. La estructura de la
-                página se basa en fragmentos de código EJS para la reutilización
-                y organización del código, y utiliza clases de Bootstrap para el
-                diseño y el estilo. La página también incluye un script de
-                JavaScript para cargar la biblioteca de Bootstrap y proporcionar
-                funcionalidades adicionales.
-            </p>
+        <div class="container mb-5">
+            <div class="row mt-5 mb-5">
+                <h2 class="container text-center mt-5">About</h2>
+                <div
+                    class="box container text-center border border-dark mb-5 mt-5">
+                    <div class="content-container">
+                        <lu>
+                            <p>Este proyecto representa una página web
+                                sofisticada y
+                                bien estructurada, que utiliza HTML, un lenguaje
+                                de
+                                marcado estándar para la creación de contenido y
+                                la
+                                estructura de las páginas web. Además, se ha
+                                incorporado EJS, un motor de plantillas para
+                                JavaScript, que permite la creación de vistas
+                                dinámicas y reutilizables en la estructura de la
+                                página.</p>
+                            <p>La estructura básica de la página se compone de
+                                tres
+                                elementos principales: la cabecera, la barra de
+                                navegación y el pie de página. Estos elementos
+                                se
+                                encuentran encapsulados en fragmentos de código
+                                EJS,
+                                lo que permite una mejor organización y
+                                reutilización del código. La cabecera incluye
+                                metadatos y referencias a hojas de estilo,
+                                mientras
+                                que la barra de navegación proporciona una
+                                interfaz
+                                de navegación intuitiva para los usuarios.</p>
+                            <p>El cuerpo de la página es el área central de la
+                                página web y contiene el contenido principal. En
+                                este caso, se ha incluido un cuadro con un
+                                mensaje
+                                personalizado, que utiliza clases de Bootstrap
+                                para
+                                el diseño y el estilo. Bootstrap es una
+                                biblioteca
+                                de código abierto que proporciona componentes de
+                                interfaz de usuario reutilizables y diseños
+                                responsivos, lo que facilita el desarrollo
+                                front-end
+                                y la creación de páginas web atractivas y
+                                adaptables
+                                a diferentes dispositivos.</p>
+                            <p>El pie de página, también encapsulado en un
+                                fragmento
+                                de código EJS, contiene información de copyright
+                                y
+                                enlaces a redes sociales. Este elemento también
+                                utiliza clases de Bootstrap para el diseño y el
+                                estilo.</p>
+                            <p>Para completar la página web, se ha incluido un
+                                script de JavaScript que carga la biblioteca de
+                                Bootstrap. Bootstrap utiliza JavaScript para
+                                proporcionar funcionalidades adicionales, como
+                                la
+                                navegación desplegable y el colapso de
+                                elementos,
+                                además de facilitar el desarrollo front-end.</p>
+                            <p>En resumen, este proyecto es una página web
+                                sofisticada y bien estructurada que utiliza
+                                HTML,
+                                EJS y Bootstrap para crear una interfaz de
+                                usuario
+                                atractiva y adaptable. La estructura de la
+                                página se
+                                basa en fragmentos de código EJS para la
+                                reutilización y organización del código, y
+                                utiliza
+                                clases de Bootstrap para el diseño y el estilo.
+                                La
+                                página también incluye un script de JavaScript
+                                para
+                                cargar la biblioteca de Bootstrap y proporcionar
+                                funcionalidades adicionales.</p>
+                        </lu>
+                    </div>
+                </div>
+            </div>
         </div>
+        <%- include ('partials/footer.ejs')%>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     </body>
-
-    <%- include ('partials/footer.ejs')%>
 </html>
