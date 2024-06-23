@@ -103,5 +103,32 @@
         .content-container {
             padding-top: 20px;
         }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-img-top {
+            height: 200px; /* Ajusta esta altura según sea necesario */
+            object-fit: cover;
+        }
+
     </style>
 </head>

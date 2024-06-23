@@ -6,7 +6,7 @@ ruta.get('/', (req, res) => {
     try {
         proveedoresController.getAll()
             .then((proveedores) => {
-                res.render('proveedores', {  proveedores });
+                res.render('proveedores', { proveedores });
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
@@ -17,7 +17,7 @@ ruta.get('/:id', (req, res) => {
     try {
         proveedoresController.getOneBy(req.params.id)
             .then((proveedores) => {
-                res.render('proveedores', {  proveedores });
+                res.render('proveedores', { proveedores });
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
@@ -28,29 +28,33 @@ ruta.post('/', (req, res) => {
     try {
         proveedoresController.insert(req.body)
             .then((proveedores) => {
-                res.json({ message: 'success', codeStatus: 200, data: proveedores });
+                res.redirect('/proveedores');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.patch('/', (req, res) => {
+ruta.post('/:id', (req, res) => {
     try {
+        // const id = req.params.id;
+        // const objeto = req.body;
         proveedoresController.update(req.body)
             .then((proveedores) => {
-                res.json({ message: 'success', codeStatus: 200, data: proveedores });
-            })
+            // console.log(id, objeto);
+            res.redirect('/proveedores');
+        })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.delete('/', (req, res) => {
+ruta.post('/delete/:id', (req, res) => {
     try {
-        proveedoresController.delete(req.body)
+        proveedoresController.deleteBy(req.params.id)
             .then((proveedores) => {
-                res.json({ message: 'success', codeStatus: 200, data: proveedores });
+                console.log(req.params.id);
+                res.redirect('/proveedores');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });

@@ -13,10 +13,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('port', config.app.port);
 app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(ruta)
 
 
+
 app.listen(PORT, () => {
-    console.log(`Servicio levantador: http://localhost:${app.get('port')}`);
+    console.log(`Servicio levantado: http://localhost:${app.get('port')}`);
 });
