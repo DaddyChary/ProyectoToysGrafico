@@ -16,9 +16,7 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(ruta)
-
-
+app.use(ruta);
 
 app.listen(PORT, () => {
     console.log(`Servicio levantado: http://localhost:${app.get('port')}`);

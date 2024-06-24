@@ -53,7 +53,7 @@ ruta.post('/delete/:id', (req, res) => {
     try {
         proveedoresController.deleteBy(req.params.id)
             .then((proveedores) => {
-                console.log(req.params.id);
+                //console.log(req.params.id);
                 res.redirect('/proveedores');
             })
     } catch (error) {

@@ -43,7 +43,7 @@
                                     <button type="button"
                                         class="btn btn-danger btn-sm"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal">Eliminar</button>
+                                        data-bs-target="#deleteModal<%= item.id %>">Eliminar</button>
                                 </td>
                             </tr>
                             <!-- Modal para Editar -->
@@ -64,8 +64,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <form method="POST"
-                                                action="/editar/<%= item.id %>">
-                                                <div class="mb-3">
+                                                action="/categorias/<%= item.id %>">
+                                                <div class="mb-3" hidden>
                                                     <label
                                                         for="id_edit_<%= item.id %>"
                                                         class="form-label">ID</label>
@@ -104,6 +104,52 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Modal para Eliminar -->
+                            <div class="modal fade"
+                                id="deleteModal<%= item.id %>"
+                                tabindex="-1"
+                                aria-labelledby="deleteModalLabel<%= item.id %>"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"
+                                                id="deleteModalLabel<%= item.id %>">Confirmar
+                                                Eliminación</h5>
+                                            <button type="button"
+                                                class="btn-close"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>¿Está seguro que desea eliminar
+                                                este
+                                                item?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button"
+                                                class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <form method="post"
+                                                action="/categorias/delete/<%= item.id %>">
+                                                <div class="mb-3" hidden>
+                                                    <label
+                                                        for="id_edit_<%= item.id %>"
+                                                        class="form-label">ID</label>
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="id_edit_<%= item.id %>"
+                                                        name="id"
+                                                        value="<%= item.id %>"
+                                                        readonly>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-danger">Eliminar</button>
+                                            </form>
+                                        </tbody>
+                                    </div>
+                                </div>
+                            </div>
                             <% }) %>
                         </tbody>
                     </table>
@@ -112,62 +158,41 @@
         </div>
         <!-- Modal para Agregar -->
         <div class="modal fade" id="addModal" tabindex="-1"
-            aria-labelledby="addModalLabel" aria-hidden="true">
+            aria-labelledby="addModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addModalLabel">Agregar
+                        <h5 class="modal-title"
+                            id="addModalLabel">Agregar
                             Categoria</h5>
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="/categorias" method="post">
                             <div class="mb-3">
-                                <label for="nombre_categoria_add"
-                                    class="form-label">Nombre de la
-                                    Categoría</label>
+                                <label for="nombre_add"
+                                    class="form-label">Nombre</label>
                                 <input type="text" class="form-control"
-                                    id="nombre_categoria_add"
-                                    name="nombre_categoria"
-                                    placeholder="Ingrese el nombre de la categoría">
+                                    id="nombre_add" name="nombre"
+                                    placeholder="Ingrese el nombre de la categoria">
                             </div>
                             <div class="mb-3">
-                                <label for="descripcion_categoria_add"
-                                    class="form-label">Descripción de la
-                                    Categoría</label>
+                                <label
+                                    for="descripcion_add"
+                                    class="form-label">Descripcion</label>
                                 <input type="text" class="form-control"
-                                    id="descripcion_categoria_add"
-                                    name="descripcion_categoria"
-                                    placeholder="Ingrese la descripción de la categoría">
+                                    id="descripcion_add" name="descripcion"
+                                    placeholder="Ingrese la descripcion de la categoria">
                             </div>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit"
+                                class="btn btn-primary">
                                 Agregar categoría
                             </button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal para Eliminar -->
-        <div class="modal fade" id="deleteModal" tabindex="-1"
-            aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Confirmar
-                            Eliminación</h5>
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>¿Está seguro que desea eliminar este item?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-danger"
-                            id="confirmDeleteBtn">Eliminar</button>
                     </div>
                 </div>
             </div>

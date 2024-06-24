@@ -51,13 +51,6 @@
                                         class="btn btn-danger btn-sm"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal<%= item.id %>">Eliminar</button>
-                                    <form method="POST"
-                                        action="/eliminar/<%= item.id %>"
-                                        id="deleteForm<%= item.id %>"
-                                        class="d-none">
-                                        <button type="submit"
-                                            class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>
                                 </td>
                             </tr>
                             <!-- Modal para Editar Juguete -->
@@ -78,8 +71,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <form method="POST"
-                                                action="/editar/<%= item.id %>">
-                                                <div class="mb-3">
+                                                action="/juguetes/<%= item.id %>">
+                                                <div class="mb-3" hidden>
                                                     <label
                                                         for="id_edit_<%= item.id %>"
                                                         class="form-label">ID</label>
@@ -185,9 +178,22 @@
                                             <button type="button"
                                                 class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="button"
-                                                class="btn btn-danger"
-                                                onclick="document.getElementById('deleteForm<%= item.id %>').submit()">Eliminar</button>
+                                            <form method="post"
+                                                action="/juguetes/delete/<%= item.id %>">
+                                                <div class="mb-3" hidden>
+                                                    <label
+                                                        for="id_edit_<%= item.id %>"
+                                                        class="form-label">ID</label>
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="id_edit_<%= item.id %>"
+                                                        name="id"
+                                                        value="<%= item.id %>"
+                                                        readonly>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-danger">Eliminar</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -210,7 +216,7 @@
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="/juguetes" method="post">
                             <div class="mb-3">
                                 <label for="nombre_add"
                                     class="form-label">Nombre</label>

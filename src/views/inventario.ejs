@@ -43,16 +43,8 @@
                                         class="btn btn-danger btn-sm"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal<%= item.id %>">Eliminar</button>
-                                    <form method="POST"
-                                        action="/eliminar/<%= item.id %>"
-                                        id="deleteForm<%= item.id %>"
-                                        class="d-none">
-                                        <button type="submit"
-                                            class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>
                                 </td>
                             </tr>
-
                             <!-- Modal para Editar Item -->
                             <div class="modal fade" id="editModal<%= item.id %>"
                                 tabindex="-1"
@@ -71,8 +63,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <form method="POST"
-                                                action="/editar/<%= item.id %>">
-                                                <div class="mb-3">
+                                                action="/inventario/<%= item.id %>">
+                                                <div class="mb-3" hidden>
                                                     <label
                                                         for="id_edit_<%= item.id %>"
                                                         class="form-label">ID</label>
@@ -98,7 +90,7 @@
                                                     <label
                                                         for="cantidad_edit_<%= item.id %>"
                                                         class="form-label">Cantidad</label>
-                                                    <input type="text"
+                                                    <input type="number"
                                                         class="form-control"
                                                         id="cantidad_edit_<%= item.id %>"
                                                         name="cantidad"
@@ -137,9 +129,22 @@
                                             <button type="button"
                                                 class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cancelar</button>
-                                            <button type="button"
-                                                class="btn btn-danger"
-                                                onclick="document.getElementById('deleteForm<%= item.id %>').submit()">Eliminar</button>
+                                            <form method="post"
+                                                action="/inventario/delete/<%= item.id %>">
+                                                <div class="mb-3" hidden>
+                                                    <label
+                                                        for="id_edit_<%= item.id %>"
+                                                        class="form-label">ID</label>
+                                                    <input type="text"
+                                                        class="form-control"
+                                                        id="id_edit_<%= item.id %>"
+                                                        name="id"
+                                                        value="<%= item.id %>"
+                                                        readonly>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-danger">Eliminar</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +167,7 @@
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="/agregar">
+                        <form action="/inventario" method="post">
                             <div class="mb-3">
                                 <label for="id_juguete_fk_add"
                                     class="form-label">ID Juguete</label>
@@ -173,7 +178,7 @@
                             <div class="mb-3">
                                 <label for="cantidad_add"
                                     class="form-label">Cantidad</label>
-                                <input type="text" class="form-control"
+                                <input type="number" class="form-control"
                                     id="cantidad_add" name="cantidad"
                                     placeholder="Ingrese la cantidad">
                             </div>

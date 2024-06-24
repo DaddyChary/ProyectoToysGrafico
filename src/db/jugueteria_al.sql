@@ -48,23 +48,6 @@ CREATE TABLE IF NOT EXISTS inventario (
     FOREIGN KEY (id_juguete_fk) REFERENCES juguetes(id)
 );
 
--- Crear la tabla ingresos
-CREATE TABLE IF NOT EXISTS ingresos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_juguete_fk INT NOT NULL,
-    fecha_ingreso DATE NOT NULL,
-    FOREIGN KEY (id_juguete_fk) REFERENCES juguetes(id)
-);
-
--- Crear la tabla egresos
-CREATE TABLE IF NOT EXISTS egresos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_juguete_fk INT NOT NULL,
-    fecha_egreso DATE NOT NULL,
-    FOREIGN KEY (id_juguete_fk) REFERENCES juguetes(id)
-);
-
-
 -- Insertar una categoría
 INSERT INTO categorias (nombre, descripcion) VALUES ('Juegos de Mesa', 'Juegos de mesa para todas las edades');
 
@@ -82,10 +65,3 @@ VALUES ('Monopoly', 'Juego de mesa clásico para toda la familia', 29.99, 1, 1, 
 INSERT INTO inventario (id_juguete_fk, cantidad) 
 VALUES (1, 50);
 
--- Insertar ingreso
-INSERT INTO ingresos (id_juguete_fk, fecha_ingreso) 
-VALUES (1, '2024-05-28');
-
--- Insertar egreso
-INSERT INTO egresos (id_juguete_fk, fecha_egreso) 
-VALUES (1, '2024-05-30');

@@ -6,7 +6,7 @@ ruta.get('/', (req, res) => {
     try {
         marcasController.getAll()
             .then((marcas) => {
-                res.render('marcas', {  marcas });
+                res.render('marcas', { marcas });
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
@@ -28,29 +28,29 @@ ruta.post('/', (req, res) => {
     try {
         marcasController.insert(req.body)
             .then((marcas) => {
-                res.json({ message: 'success', codeStatus: 200, data: marcas });
+                res.redirect('/marcas');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.patch('/', (req, res) => {
+ruta.post('/:id', (req, res) => {
     try {
         marcasController.update(req.body)
             .then((marcas) => {
-                res.json({ message: 'success', codeStatus: 200, data: marcas });
+                res.redirect('/marcas');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.delete('/', (req, res) => {
+ruta.post('/delete/:id', (req, res) => {
     try {
-        marcasController.delete(req.body)
+        marcasController.deleteBy(req.params.id)
             .then((marcas) => {
-                res.json({ message: 'success', codeStatus: 200, data: marcas });
+                res.redirect('/marcas');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });

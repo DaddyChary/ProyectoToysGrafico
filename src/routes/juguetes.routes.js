@@ -39,29 +39,29 @@ ruta.post('/', (req, res) => {
     try {
         juguetesController.insert(req.body)
             .then((juguetes) => {
-                res.json({ message: 'success', codeStatus: 200, data: juguetes });
+                res.redirect('/juguetes');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.patch('/', (req, res) => {
+ruta.post('/:id', (req, res) => {
     try {
         juguetesController.update(req.body)
             .then((juguetes) => {
-                res.json({ message: 'success', codeStatus: 200, data: juguetes });
+                res.redirect('/juguetes');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.delete('/', (req, res) => {
+ruta.post('/delete/:id', (req, res) => {
     try {
-        juguetesController.delete(req.body)
+        juguetesController.deleteBy(req.params.id)
             .then((juguetes) => {
-                res.json({ message: 'success', codeStatus: 200, data: juguetes });
+                res.redirect('/juguetes');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });

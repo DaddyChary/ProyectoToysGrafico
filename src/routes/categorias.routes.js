@@ -29,29 +29,29 @@ ruta.post('/', (req, res) => {
     try {
         categoriasController.insert(req.body)
             .then((categorias) => {
-                res.json({ message: 'success', codeStatus: 200, data: categorias });
+                res.redirect('/categorias');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.patch('/', (req, res) => {
+ruta.post('/:id', (req, res) => {
     try {
         categoriasController.update(req.body)
             .then((categorias) => {
-                res.json({ message: 'success', codeStatus: 200, data: categorias });
+                res.redirect('/categorias');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });
     }
 });
 
-ruta.delete('/', (req, res) => {
+ruta.post('/delete/:id', (req, res) => {
     try {
-        categoriasController.deleteBy(req.body.id)
+        categoriasController.deleteBy(req.params.id)
             .then((categorias) => {
-                res.json({ message: 'success', codeStatus: 200, data: categorias });
+                res.redirect('/categorias');
             })
     } catch (error) {
         res.json({ message: 'error', codeStatus: 500, data: error });

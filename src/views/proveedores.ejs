@@ -8,7 +8,6 @@
     </head>
     <body>
         <%- include('partials/navbar.ejs')%>
-
         <div class="container mt-5">
             <div class="row mt-5">
                 <div class="col-12">
@@ -46,13 +45,6 @@
                                         class="btn btn-danger btn-sm"
                                         data-bs-toggle="modal"
                                         data-bs-target="#deleteModal<%= item.id %>">Eliminar</button>
-                                    <form method="POST"
-                                        action="/eliminar/<%= item.id %>"
-                                        id="deleteForm<%= item.id %>"
-                                        class="d-none">
-                                        <button type="submit"
-                                            class="btn btn-danger btn-sm">Eliminar</button>
-                                    </form>
                                 </td>
                             </tr>
                             <!-- Modal para Editar Proveedor -->
@@ -173,7 +165,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Modal para Agregar Proveedor -->
         <div class="modal fade" id="addModal" tabindex="-1"
             aria-labelledby="addModalLabel" aria-hidden="true">
@@ -216,7 +207,6 @@
                 </div>
             </div>
         </div>
-
         <%- include('partials/footer.ejs')%>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
