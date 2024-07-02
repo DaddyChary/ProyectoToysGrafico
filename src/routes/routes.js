@@ -6,11 +6,29 @@ const proveedoresRoutes = require('./proveedores.routes');
 const juguetesRoutes = require('./juguetes.routes');
 const inventarioRoutes = require('./inventario.routes');
 
-ruta.use('/inventario', inventarioRoutes);
-ruta.use('/juguetes', juguetesRoutes);
-ruta.use('/proveedores', proveedoresRoutes);
-ruta.use('/categorias', categoriasRoutes);
-ruta.use('/marcas', marcasRoutes);
+const authMiddelware = (req, res, next) => {
+    
+    const auth = { login: 'admin', password: 'admin'};
+
+    const b64auth = (req.headers.authorization || '').split(' ')[1] || '';
+    const [login, password] = Buffer.from(b64auth, 'base64').toString().split(':');
+
+    if (login && password === auth.login && password === auth.password) {
+        return next();
+    }
+
+    res.set('WWW-Authenticate', 'Basic realm="401"');
+    res.status(401).render('home', { mensaje: 'Acceso no autorizado' });
+
+};
+
+ruta.use((req, res, next) => {
+
+    if (req.path !== '/') {
+        return authMiddelware(req, res, next);
+    }
+    next();
+});
 
 ruta.get('/', (req, res) => {
     try {
@@ -31,6 +49,15 @@ ruta.get('/about', (req, res) => {
         res.status(500).render('500', { titulo: "Error del servidor" });
     }
 });
+
+ruta.use('/inventario', inventarioRoutes);
+ruta.use('/juguetes', juguetesRoutes);
+ruta.use('/proveedores', proveedoresRoutes);
+ruta.use('/categorias', categoriasRoutes);
+ruta.use('/marcas', marcasRoutes);
+
+
+
 
 // ruta.get('/', (req, res) => {
 //     const titulo = "Bienvenido al inicio"
