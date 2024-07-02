@@ -8,11 +8,15 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Asegúrate de que el cuerpo de la página tenga una altura mínima de 100% de la ventana */
+            min-height: 100vh; /* 100% de la altura de la ventana */
+            margin: 0; /* Elimina el margen por defecto */
+            position: relative;
         }
 
+        /* Ajusta el padding del contenido para dejar espacio para el footer */
         .content {
             flex: 1;
+            padding-bottom: 100px; /* Ajusta este valor según el tamaño del footer */
         }
 
         .footer {
@@ -20,6 +24,9 @@
             color: #ffffff;
             padding: 20px 0;
             text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
 
         .footer-container {
