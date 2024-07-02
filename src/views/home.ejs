@@ -3,103 +3,154 @@
     <%- include('partials/head.ejs')%>
     <body>
         <%- include ('partials/navbar.ejs')%>
-        <div class="container mb-5 mt-5">
-            <h2 class="text-center">Menu</h2>
-            <div class="footer-container container text-center mt-5">
-                <div class="row">
-                    <div class="col">
-                        <a href="/categorias" class="card-link">
-                            <div class="card">
-                                <img src="/img/CategoriaMenu.jpg"
-                                    class="card-img-top"
-                                    alt="Imagen de categorias">
-                                <div class="card-body">
-                                    <h5 class="card-title">Categorias</h5>
-                                    <p class="card-text">Apartado de categorias.
-                                        Aqui podras ingresar, modificar,
-                                        eliminar
-                                        categorias, ademas de visualizarlas
-                                    </p>
-                                </div>
+
+        <div class="container mt-5 mb-5">
+            <div class="container mb-5 mt-5">
+                <div class="container mt-5 mb-5">
+                    <div class="row text-center">              
+                        <% datos.forEach(item => { %>          
+                        <div class="col-md-4">
+                            <div class="statistic-card">
+                                <h3>Total de Categorías</h3>
+                                <p><%= item.cantidad_total_categorias%></p> <!-- Ejemplo de dato dinámico -->
                             </div>
-                        </a>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistic-card">
+                                <h3>Total de Marcas</h3>
+                                <p><%= item.cantidad_total_marcas%></p> <!-- Ejemplo de dato dinámico -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistic-card">
+                                <h3>Total de Juguetes</h3>
+                                <p><%= item.cantidad_total_juguetes%></p> <!-- Ejemplo de dato dinámico -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistic-card">
+                                <h3>Total de Proveedores</h3>
+                                <p><%= item.cantidad_total_proveedores%></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistic-card">
+                                <h3>Total de Items en Inventario</h3>
+                                <p><%= item.total_items_inventario%></p> <!-- Ejemplo de dato dinámico -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="statistic-card">
+                                <h3>Estado</h3>
+                                <p>☻</p>
+                            </div>
+                        </div>  
+                        <% }) %>
                     </div>
                 </div>
-            </div>
-            <div class="footer-container container text-center mt-5">
-                <div class="row">
-                    <div class="col">
-                        <a href="/marcas" class="card-link">
-                            <div class="card">
-                                <img src="/img/MarcasMenu.webp"
-                                    class="card-img-top" alt="Imagen de marcas">
-                                <div class="card-body">
-                                    <h5 class="card-title">Marcas</h5>
-                                    <p class="card-text">Apartado de marcas.
-                                        Aqui
-                                        podras ingresar, modificar, eliminar
-                                        marcas, ademas de visualizarlas</p>
+                <h2 class="text-center">Menu</h2>
+                <div class="footer-container container text-center mt-5">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/categorias" class="card-link">
+                                <div class="card">
+                                    <img src="/img/CategoriaMenu.png"
+                                        class="card-img-top"
+                                        alt="Imagen de categorias">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Categorias</h5>
+                                        <p class="card-text">Apartado de
+                                            categorias.
+                                            Aqui podras ingresar, modificar,
+                                            eliminar
+                                            categorias, ademas de visualizarlas
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/juguetes" class="card-link">
-                            <div class="card">
-                                <img src="/img/JuguetesMenu.jpg"
-                                    class="card-img-top"
-                                    alt="Imagen de juguete">
-                                <div class="card-body">
-                                    <h5 class="card-title">Juguetes</h5>
-                                    <p class="card-text">Apartado de juguetes.
-                                        Aqui
-                                        podras ingresar, modificar, eliminar
-                                        juguetes, ademas de visualizarlos</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="/proveedores" class="card-link">
-                            <div class="card">
-                                <img src="/img/ProveedoresMenu.jpg"
-                                    class="card-img-top"
-                                    alt="Imagen de proveedores">
-                                <div class="card-body">
-                                    <h5 class="card-title">Proveedores</h5>
-                                    <p class="card-text">Apartado de
-                                        proveedores.
-                                        Aqui podras ingresar, modificar,
-                                        eliminar
-                                        proveedores, ademas de visualizarlos</p>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer-container container text-center mt-5">
-                <div class="row">
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                        <a href="/inventario" class="card-link">
-                            <div class="card">
-                                <img src="/img/InventarioMenu.webp"
-                                    class="card-img-top"
-                                    alt="Imagen de inventario">
-                                <div class="card-body">
-                                    <h5 class="card-title">Inventario</h5>
-                                    <p class="card-text">Apartado de inventario.
-                                        Aqui podras ingresar, modificar,
-                                        eliminar
-                                        items del inventario, ademas de
-                                        visualizarlo</p>
+                <div class="footer-container container text-center mt-5">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/marcas" class="card-link">
+                                <div class="card">
+                                    <img src="/img/MarcasMenu.webp"
+                                        class="card-img-top"
+                                        alt="Imagen de marcas">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Marcas</h5>
+                                        <p class="card-text">Apartado de marcas.
+                                            Aqui
+                                            podras ingresar, modificar, eliminar
+                                            marcas, ademas de visualizarlas</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="/juguetes" class="card-link">
+                                <div class="card">
+                                    <img src="/img/JuguetesMenu.jpg"
+                                        class="card-img-top"
+                                        alt="Imagen de juguete">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Juguetes</h5>
+                                        <p class="card-text">Apartado de
+                                            juguetes.
+                                            Aqui
+                                            podras ingresar, modificar, eliminar
+                                            juguetes, ademas de
+                                            visualizarlos</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <a href="/proveedores" class="card-link">
+                                <div class="card">
+                                    <img src="/img/ProveedoresMenu.jpg"
+                                        class="card-img-top"
+                                        alt="Imagen de proveedores">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Proveedores</h5>
+                                        <p class="card-text">Apartado de
+                                            proveedores.
+                                            Aqui podras ingresar, modificar,
+                                            eliminar
+                                            proveedores, ademas de
+                                            visualizarlos</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col">
+                </div>
+                <div class="footer-container container text-center mt-5">
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                            <a href="/inventario" class="card-link">
+                                <div class="card">
+                                    <img src="/img/InventarioMenu.webp"
+                                        class="card-img-top"
+                                        alt="Imagen de inventario">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Inventario</h5>
+                                        <p class="card-text">Apartado de
+                                            inventario.
+                                            Aqui podras ingresar, modificar,
+                                            eliminar
+                                            items del inventario, ademas de
+                                            visualizarlo</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                        </div>
                     </div>
                 </div>
             </div>

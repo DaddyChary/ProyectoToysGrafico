@@ -200,19 +200,22 @@
         <%- include('partials/footer.ejs')%>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
-        <!-- <script>
-            $(document).ready(function(){
-                $("search").on("keyup", function() {
-                    var value = $(this).val().toLowerCase();
-                    $("table tr").filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
+        <script>
+            // JavaScript para buscar en la tabla al escribir en el input
+            document.getElementById('search').addEventListener('input', function() {
+                
+                var filter = this.value.toLowerCase();
+                var rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    var text = row.innerText.toLowerCase();
+                    if (text.includes(filter)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
                 });
             });
-            $(document).ready(function(){
-                $("table").DataTable();
-            });
-        </script> -->
+        </script>
     </body>
 </html>

@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const ruta = Router();
+const homeController = require('../db/controller/homeController.js');
 const categoriasRoutes = require('./categorias.routes');
 const marcasRoutes = require('./marcas.routes');
 const proveedoresRoutes = require('./proveedores.routes');
@@ -18,22 +19,22 @@ const authMiddelware = (req, res, next) => {
     }
 
     res.set('WWW-Authenticate', 'Basic realm="401"');
-    res.status(401).render('home', { mensaje: 'Acceso no autorizado' });
-
+    res.status(401).render('denegado', { mensaje: 'Acceso no autorizado' });
 };
 
 ruta.use((req, res, next) => {
 
-    if (req.path !== '/') {
+    if (req.path) {
         return authMiddelware(req, res, next);
     }
     next();
 });
 
-ruta.get('/', (req, res) => {
+ruta.get('/', async (req, res) => {
     try {
+        const datos = await homeController.getAll(); // Espera a que se resuelva la promesa de getAll()
         const titulo = "Bienvenido al inicio";
-        res.render('home', { titulo });
+        res.render('home', { titulo, datos }); // Pasar los datos obtenidos a la plantilla 'home'
     } catch (err) {
         console.error(err.stack);
         res.status(500).render('500', { titulo: "Error del servidor" });
